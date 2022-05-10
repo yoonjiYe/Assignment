@@ -16,8 +16,9 @@ const (
 func main() {
 	var longP float64
 	var latP float64
-	fmt.Print("경도와 위도를 입력하시오. (예) 127.027268062 37.499212063")
-	fmt.Scanf("%s %d", &longP, &latP)
+	fmt.Print("경도와 위도를 입력하시오. (예) 127.027268062 37.499212063 => ")
+	fmt.Scanf("%f %f", &longP, &latP)
+	fmt.Print(longP, latP)
 	// geojson file to a feature collection
 	b, _ := ioutil.ReadFile(GEO_FILE)
 
@@ -25,6 +26,7 @@ func main() {
 	featureCollection, _ := geojson.UnmarshalFeatureCollection(b)
 
 	// 최단거리와, 해당 좌표를 계산하기 위한 함수 호출
+
 	DistanceFromCoordi(featureCollection, orb.Point{longP, latP})
 }
 
