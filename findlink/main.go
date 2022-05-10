@@ -18,7 +18,6 @@ func main() {
 	var latP float64
 	fmt.Print("경도와 위도를 입력하시오. (예) 127.027268062 37.499212063 => ")
 	fmt.Scanf("%f %f", &longP, &latP)
-	fmt.Print(longP, latP)
 	// geojson file to a feature collection
 	b, _ := ioutil.ReadFile(GEO_FILE)
 
@@ -79,13 +78,13 @@ func Calculate(a, b, point orb.Point) []float64 {
 		}
 	}
 
-	// 위,경도 값으로 구한 거리(좌표간의 거리)
+	// 경,위도 값으로 구한 거리(좌표간의 거리)
 	// dx = point[0] - x
 	// dy = point[1] - y
 	//h := math.Sqrt(dx*dx + dy*dy)
 
-	// 위, 경도 값으로 구한 미터단위 거리
-	h := measure(point[1], y, point[0], x)
+	// 경,위도 값으로 구한 미터단위 거리
+	h := measure(point[1], point[0], y, x)
 
 	result = append(result, h)
 	result = append(result, x)
